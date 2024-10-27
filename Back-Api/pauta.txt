@@ -1,0 +1,32 @@
+5 secciones
+Nav que redirecciona a cada página
+Se deben visualizar al menos 5 datos de cada ¿auto?
+
+
+
+# Api
+
+## Usuarios: 1
+
+Información de perfil, registro, autenticación, y gestión de usuarios.
+Datos: nombre, email, contraseña, roles, preferencias, etc.
+
+## Vehículos: 2
+
+Gestión de vehículos registrados: añadir, editar, eliminar, y consultar información.
+Datos: marca, modelo, año, precio, disponibilidad, ubicación, etc.
+
+## Reservas: 3
+
+Crear, consultar, actualizar y cancelar reservas.
+Datos: usuario, vehículo, fechas de alquiler, estado de la reserva, costo.
+
+## Transacciones: 4
+
+Información sobre pagos y cobros de alquileres.
+Datos: monto, método de pago, detalles de la transacción, historial de pagos.
+
+## Ubicaciones: 5
+
+Información sobre puntos de recogida y entrega de vehículos.
+Datos: nombre del lugar, dirección, coordenadas GPS, horario de funcionamiento.

@@ -1,0 +1,143 @@
+[
+    {
+      "id": 1,
+      "marca": "Toyota",
+      "modelo": "Hilux",
+      "colores": ["Blanco", "Negro", "Gris"],
+      "img": "Toyota-Hilux.jpg"
+    },
+    {
+      "id": 2,
+      "marca": "Volkswagen",
+      "modelo": "Amarok",
+      "colores": ["Blanco", "Rojo", "Negro"],
+      "img": "Volkswagen-Amarok.jpg"
+    },
+    {
+      "id": 3,
+      "marca": "Ford",
+      "modelo": "Ranger",
+      "colores": ["Azul", "Gris", "Negro"],
+      "img": "Ford-Ranger.jpg"
+    },
+    {
+      "id": 4,
+      "marca": "Fiat",
+      "modelo": "Cronos",
+      "colores": ["Rojo", "Blanco", "Negro"],
+      "img": "Fiat-Cronos.jpg"
+    },
+    {
+      "id": 5,
+      "marca": "Chevrolet",
+      "modelo": "Onix",
+      "colores": ["Azul", "Rojo", "Gris"],
+      "img": "Chevrolet-Onix.jpg"
+    },
+    {
+      "id": 6,
+      "marca": "Renault",
+      "modelo": "Kangoo",
+      "colores": ["Blanco", "Gris", "Negro"],
+      "img": "Renault-Kangoo.jpg"
+    },
+    {
+      "id": 7,
+      "marca": "Peugeot",
+      "modelo": "208",
+      "colores": ["Azul", "Blanco", "Negro"],
+      "img": "Peugeot-208.jpg"
+    },
+    {
+      "id": 8,
+      "marca": "Honda",
+      "modelo": "HR-V",
+      "colores": ["Rojo", "Blanco", "Negro"],
+      "img": "Honda-HR.jpg"
+    },
+    {
+      "id": 9,
+      "marca": "Nissan",
+      "modelo": "Frontier",
+      "colores": ["Blanco", "Negro", "Gris"],
+      "img": "Nissan-Frontier.jpg"
+    },
+    {
+      "id": 10,
+      "marca": "Jeep",
+      "modelo": "Renegade",
+      "colores": ["Rojo", "Negro", "Azul"],
+      "img": "Jeep-Renegade.jpg"
+    },
+    {
+      "id": 11,
+      "marca": "Citroën",
+      "modelo": "C4 Cactus",
+      "colores": ["Verde", "Blanco", "Negro"],
+      "img": "Citroën-C4.jpg"
+    },
+    {
+      "id": 12,
+      "marca": "Volkswagen",
+      "modelo": "T-Cross",
+      "colores": ["Azul", "Rojo", "Negro"],
+      "img": "Volkswagen-T.jpg"
+    },
+    {
+      "id": 13,
+      "marca": "Fiat",
+      "modelo": "Argo",
+      "colores": ["Blanco", "Gris", "Negro"],
+      "img": "Fiat-Argo.jpg"
+    },
+    {
+      "id": 14,
+      "marca": "Chevrolet",
+      "modelo": "Tracker",
+      "colores": ["Rojo", "Negro", "Gris"],
+      "img": "Chevrolet-Tracker.jpg"
+    },
+    {
+      "id": 15,
+      "marca": "Renault",
+      "modelo": "Duster",
+      "colores": ["Blanco", "Azul", "Negro"],
+      "img": "Renault-Duster.jpg"
+    },
+    {
+      "id": 16,
+      "marca": "Toyota",
+      "modelo": "Corolla",
+      "colores": ["Gris", "Blanco", "Rojo"],
+      "img": "Toyota-Corolla.jpg"
+    },
+    {
+      "id": 17,
+      "marca": "Ford",
+      "modelo": "EcoSport",
+      "colores": ["Negro", "Blanco", "Gris"],
+      "img": "Ford-EcoSport.jpg"
+    },
+    {
+      "id": 18,
+      "marca": "Nissan",
+      "modelo": "Kicks",
+      "colores": ["Azul", "Blanco", "Negro"],
+      "img": "Nissan-Kicks.jpg"
+    },
+    {
+      "id": 19,
+      "marca": "Honda",
+      "modelo": "Civic",
+      "colores": ["Rojo", "Gris", "Negro"],
+      "img": "Honda-Civic.jpg"
+    },
+    {
+      "id": 20,
+      "marca": "Jeep",
+      "modelo": "Compass",
+      "colores": ["Blanco", "Negro", "Rojo"],
+      "img": "Jeep-Compass.jpg"
+    }
+  ]
+  
