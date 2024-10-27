@@ -60,7 +60,7 @@ export async function login(usuario){
             throw new Error( "Los datos no son correctos" )
         }
 
-        return existe
+        return { ...existe, password:undefined }
 
 }
 
