@@ -1,6 +1,8 @@
 import { MongoClient, ObjectId } from "mongodb"
 import dotenv, { decrypt } from "dotenv";
 import bcrypt from "bcrypt"
+import jwt from "jsonwebtoken"
+import { crearToken } from "./token.service.js";
 
 dotenv.config();
 
@@ -60,7 +62,13 @@ export async function login(usuario){
             throw new Error( "Los datos no son correctos" )
         }
 
-        return { ...existe, password:undefined }
+        // name = payload y clave secreta es mi jwt
+        const token = await crearToken(existe)
+
+        console.log(token)
+
+
+        return { ...existe, token: token ,password:undefined }
 
 }
 

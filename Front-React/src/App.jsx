@@ -1,10 +1,10 @@
-import List from "./components/fetch/List"
+import Login from "./components/login/Login.jsx"
 
 function App() {
 
   return (
     <>
-      <List />
+      <Login/>
     </>
   )
 }
