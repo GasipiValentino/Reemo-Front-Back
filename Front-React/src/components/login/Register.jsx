@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 const Register = () => {
@@ -27,29 +27,63 @@ const Register = () => {
        if( resp.ok ){
         navigate("/login")
        } else{
-        const respuesta = await resp.json;
-        setError(respuesta.mensaje)
-       }
+         const respuesta = await resp.json();
+         setError(respuesta.mensaje)
+        }
+        
+        //  const data = await resp.json()
+        //  console.log(data.token);
+        //    localStorage.setItem('token', data.token)
+      }
+      
+      return (
+        <div className="flex justify-center items-center min-h-screen bg-gray-100">
+    <form onSubmit={handleSubmit}
+        className="p-6 shadow-lg rounded-lg bg-white"
+        style={{ width: '350px' }}
+        >
+      { error && <p className='text-red-300 mb-4 text-center'>{ error }</p> }
+        <h3 className="text-center mb-6 text-2xl font-semibold text-blue-600">Crear Cuenta</h3>
 
-    //    const data = await resp.json()
-    //    console.log(data.token);
-    //    localStorage.setItem('token', data.token)
-  }
-  
-    return (
-      <div>
-        <h3>Registro</h3>
-          <form action="" onSubmit={ handleSubmit }>
-              <label>Nombre</label>
-              <input onChange={ handleNombre } type='nombre' name='nombre' id='nombre '/>
-              <br />
-              <label>Password</label>
-              <input onChange={ handlePassword } type='password' name='pass' id='pass '/>
-              <button type="submit">Crear Cuenta</button>
-              <Link to="/login">Login</Link>
-              { <p>{error}</p> }
-          </form>
-      </div>
+        <div className="mb-4">
+            <label htmlFor="nombre" className="block text-gray-700 font-medium mb-1">Nombre</label>
+            <input
+                onChange={handleNombre}
+                type="text"
+                name="nombre"
+                id="nombre"
+                className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+                placeholder="Ingresa tu nombre"
+                required
+            />
+        </div>
+
+        <div className="mb-4">
+            <label htmlFor="pass" className="block text-gray-700 font-medium mb-1">Contraseña</label>
+            <input
+                onChange={handlePassword}
+                type="password"
+                name="pass"
+                id="pass"
+                className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+                placeholder="Ingresa tu contraseña"
+                required
+            />
+        </div>
+        
+        <button
+            type="submit"
+            className="w-full py-2 px-4 bg-blue-600 text-white font-medium rounded hover:bg-blue-700 transition duration-200"
+        >
+            Crear Cuenta
+        </button>
+
+        <div className="mt-4 text-center">
+            <Link to="/login" className="text-blue-500 hover:underline">Iniciar Sesión</Link>
+        </div>
+    </form>
+</div>
+
     )
 }
 

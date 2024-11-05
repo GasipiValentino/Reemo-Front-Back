@@ -30,29 +30,61 @@ const Login = () => {
      
      if(resp.ok){
       const data = await resp.json()
+      console.log(data.token)
       localStorage.setItem('token', data.token)
+      
       navigate("/")
      }
 
-
-
-     console.log(data.token);
-     localStorage.setItem('token', data.token)
 }
 
   return (
-    <div>
-        <h3>Login</h3>
-        <form action="" onSubmit={ handleSubmit }>
-            <label>Nombre</label>
-            <input onChange={ handleNombre } type='nombre' name='nombre' id='nombre '/>
-            <br />
-            <label>Password</label>
-            <input onChange={ handlePassword } type='password' name='pass' id='pass '/>
-            <button type="submit">Login</button>
-            <Link to="/register">Registro</Link>
-        </form>
-    </div>
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+    <form onSubmit={handleSubmit}
+        className="p-6 shadow-lg rounded-lg bg-white"
+        style={{ width: '350px' }}
+    >
+        <h3 className="text-center mb-6 text-2xl font-semibold text-blue-600">Login</h3>
+
+        <div className="mb-4">
+            <label htmlFor="nombre" className="block text-gray-700 font-medium mb-1">Nombre</label>
+            <input
+                onChange={handleNombre}
+                type="text"
+                name="nombre"
+                id="nombre"
+                className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+                placeholder="Ingresa tu nombre"
+                required
+            />
+        </div>
+
+        <div className="mb-4">
+            <label htmlFor="pass" className="block text-gray-700 font-medium mb-1">Password</label>
+            <input
+                onChange={handlePassword}
+                type="password"
+                name="pass"
+                id="pass"
+                className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+                placeholder="Ingresa tu contraseña"
+                required
+            />
+        </div>
+        
+        <button
+            type="submit"
+            className="w-full py-2 px-4 bg-blue-600 text-white font-medium rounded hover:bg-blue-700 transition duration-200"
+        >
+            Login
+        </button>
+
+        <div className="mt-4 text-center">
+            <Link to="/register" className="text-blue-500 hover:underline">Registro</Link>
+        </div>
+    </form>
+</div>
+
   )
 }
 
