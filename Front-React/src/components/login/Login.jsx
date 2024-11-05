@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
 // const email = []
 
@@ -7,6 +8,7 @@ const Login = () => {
 
   const [nombre, setNombre] = useState('')
   const [password, setPassword] = useState('')
+  const navigate = useNavigate()
 
   const handleNombre = (e) => {
     setNombre(e.target.value)
@@ -25,13 +27,22 @@ const Login = () => {
         'Content-Type': 'application/json',
       }
      })
-     const data = await resp.json()
+     
+     if(resp.ok){
+      const data = await resp.json()
+      localStorage.setItem('token', data.token)
+      navigate("/")
+     }
+
+
+
      console.log(data.token);
      localStorage.setItem('token', data.token)
 }
 
   return (
     <div>
+        <h3>Login</h3>
         <form action="" onSubmit={ handleSubmit }>
             <label>Nombre</label>
             <input onChange={ handleNombre } type='nombre' name='nombre' id='nombre '/>
@@ -39,6 +50,7 @@ const Login = () => {
             <label>Password</label>
             <input onChange={ handlePassword } type='password' name='pass' id='pass '/>
             <button type="submit">Login</button>
+            <Link to="/register">Registro</Link>
         </form>
     </div>
   )
