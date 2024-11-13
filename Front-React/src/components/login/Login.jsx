@@ -1,13 +1,16 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { useLogin, useSession } from '../contexts/session.context'
+import { login as loginService } from '../../services/auth.service'
 
-// const email = []
 
 const Login = () => {
 
   const [nombre, setNombre] = useState('')
   const [password, setPassword] = useState('')
+  const login = useLogin()
+
   const navigate = useNavigate()
 
   const handleNombre = (e) => {
@@ -20,21 +23,28 @@ const Login = () => {
 
   const handleSubmit = async(e) => {
     e.preventDefault()
-    const resp = await  fetch('http://localhost:3333/api/usuario/login', { 
-      method: 'POST',
-      body: JSON.stringify({ nombre: nombre, password: password }),
-      headers: {
-        'Content-Type': 'application/json',
-      }
-     })
+    loginService(nombre, password)
+      .then( usuario => {
+        login( usuario.token )
+      } )
+      .catch( (err) => console.error(err) )
+    // const resp = await  fetch('http://localhost:3333/api/usuario/login', { 
+    //   method: 'POST',
+    //   body: JSON.stringify({ nombre: nombre, password: password }),
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   }
+    //  })
      
-     if(resp.ok){
-      const data = await resp.json()
-      console.log(data.token)
-      localStorage.setItem('token', data.token)
+    //  if(resp.ok){
+    //   const data = await resp.json()
+    //   console.log(data.token)
+    //   localStorage.setItem('token', data.token)
+    //   setToken(data.token)
+    //   onLogin()
       
-      navigate("/")
-     }
+    //   navigate("/")
+    //  }
 
 }
 

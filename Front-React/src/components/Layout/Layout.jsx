@@ -1,13 +1,14 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
 import Navbar from '../Nav/Navbar'
+import { SessionProvider } from '../contexts/session.context'
 
 const Layout = () => {
   return (
-    <div>
+    <SessionProvider>
       <Navbar/>
       <Outlet/>
-    </div>
+    </SessionProvider>
   )
 }
 
