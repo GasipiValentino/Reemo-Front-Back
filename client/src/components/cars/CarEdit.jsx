@@ -15,8 +15,25 @@ const CarEdit = () => {
     precio: '',
     descripcion: '',
   });
+
+  const [marcas, setMarcas] = useState([]);
+
   const [mensajeError, setMensajeError] = useState('');
   const { _id } = useParams();
+
+  useEffect(() =>  {
+    const fetchMarcas = async () => {
+      try {
+        const response = await call({ uri: 'marcas', method: 'GET'});
+        setMarcas(response);
+      } catch (error) {
+          console.error(error);
+          setMensajeError('No se pudieron cargas las marcas');
+      }
+    };
+
+    fetchMarcas();
+  }, []);
 
   useEffect(() => {
     async function fetchVehiculo() {
@@ -56,15 +73,19 @@ const CarEdit = () => {
       {mensajeError && <p className="text-red-500 mb-4">{mensajeError}</p>}
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block text-sm font-medium">Marca</label>
-          <input
-            type="text"
-            name="marca"
+          <label className='block text-sm font-medium'>Marca</label>
+          <select 
+            name="" 
             value={vehiculo.marca}
             onChange={handleChange}
-            className="border p-2 w-full"
+            className='border p-2 w-full'
             required
-          />
+            >
+              <option value="">Seleccione una marca</option>
+              {marcas.map((marca) => (
+                <option key={marca._id} value={marca.marca}>{marca.marca}</option>
+              ))}
+            </select>1
         </div>
         <div>
           <label className="block text-sm font-medium">Modelo</label>

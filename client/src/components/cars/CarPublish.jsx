@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { call } from '../../services/api.service';
 
@@ -14,8 +14,24 @@ const CarCreate = () => {
     precio: '',
     descripcion: '',
   });
+  
+  const [marcas, setMarcas] = useState([]);
 
   const [mensajeError, setMensajeError] = useState('');
+
+  useEffect(() =>  {
+    const fetchMarcas = async () => {
+      try {
+        const response = await call({ uri: 'marcas', method: 'GET'});
+        setMarcas(response);
+      } catch (error) {
+          console.error(error);
+          setMensajeError('No se pudieron cargas las marcas');
+      }
+    };
+
+    fetchMarcas();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -42,14 +58,17 @@ const CarCreate = () => {
         <div className="grid grid-cols-1 gap-4">
           <div>
             <label className="block text-gray-700">Marca:</label>
-            <input
-              type="text"
+            <select
               name="marca"
               value={vehiculo.marca}
               onChange={handleChange}
               className="border border-gray-300 rounded-md p-2 w-full"
-              
-            />
+              >
+              <option value="" disabled>Seleccione una marca</option>
+              {marcas.map((marca) => (
+                <option key={marca._id} value={marca.marca}>{marca.marca}</option>
+              ))}
+            </select>
           </div>
           <div>
             <label className="block text-gray-700">Modelo:</label>
