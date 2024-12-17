@@ -30,33 +30,30 @@ function CarBrands() {
   }, []);
 
   useEffect(() => {
-    if (!id) {
-      setError("ID de marca no válido.");
-      setLoading(false);
-      return;
-    }
-
-    const fetchMarca = async () => {
+    const fetchAutos = async () => {
       try {
-        console.log("Llamando a la API con ID:", id);
-        const data = await call({ uri: `marca/${id}?page=${page}&limit=${modelsPerPage}` });
-        if (!data) {
-          throw new Error("No se encontraron autos para esta marca.");
-        }
-
-        setMarca(data); 
+        const uri = id === undefined 
+          ? `autos?page=${page}&limit=${modelsPerPage}`  // Ruta principal
+          : `marca/${id}?page=${page}&limit=${modelsPerPage}`;
+  
+        const data = await call({ uri });
+        if (!data) throw new Error("No se encontraron autos.");
+  
+        setMarca(id === undefined ? { marca: "todas las marcas" } : data); 
         setModelos(data.modelos); 
         setTotalPages(data.totalPages); 
         setLoading(false);
       } catch (err) {
         console.error("Error al cargar los datos:", err);
-        setError("No se pudieron cargar los autos de esta marca.");
-        setLoading(false); 
+        setError("No se pudieron cargar los autos.");
+        setLoading(false);
       }
     };
-
-    fetchMarca();
+  
+    fetchAutos();
   }, [id, page]);
+  
+  
 
   const handlePageChange = (newPage) => {
     if (newPage > 0 && newPage <= totalPages) {
@@ -65,8 +62,11 @@ function CarBrands() {
   };
 
   const handleBrandClick = (brandId) => {
-    navigate(`/marca/${brandId}`);
+    const route = brandId === "principal" ? "/" : `/marca/${brandId}`;
+    navigate(route);
   };
+  
+  
 
   if (loading) {
     return <div>Cargando...</div>;
@@ -86,16 +86,24 @@ function CarBrands() {
         <h1 className="text-3xl mb-4 sm:text-4xl font-bold text-gray-900 m-6">Modelos de {marca.marca}</h1>
 
         {/* Botones para cambiar de marca */}
-          <div className='flex flex-row gap-2 max-w-dvh overflow-x-auto'>
-            {brands.map((brand) => (
-              <button 
-                key={brand._id} 
-                onClick={() => handleBrandClick(brand._id)}
-                className='bg-blue-200 px-3 py-2 rounded-full flex items-center'>
-                {brand.marca}
-              </button>
-            ))}
-          </div>
+        <div className='flex flex-wrap flex-row gap-2 max-w-dvh'>
+          <button 
+            onClick={() => handleBrandClick("principal")}
+            className='bg-blue-500 px-3 py-2 rounded-full text-white'>
+            Todas
+          </button>
+
+          {brands.map((brand) => (
+            <button 
+              key={brand._id} 
+              onClick={() => handleBrandClick(brand._id)}
+              className='bg-blue-200 px-3 py-2 rounded-full flex items-center'>
+              {brand.marca}
+            </button>
+          ))}
+        </div>
+
+
 
           {/* Paginación */}
           <div className='flex gap-8 justify-center my-8'>
