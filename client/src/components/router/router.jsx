@@ -115,6 +115,14 @@ const router = createBrowserRouter([
           </Suspense>
         )
       },
+      {
+        path: "*",
+        element: (
+          <Suspense fallback={<div>Cargando...</div>}>
+            <h1>Página no encontrada: Error</h1>
+          </Suspense>
+        ),
+      },
     ],
   },
 ]);
