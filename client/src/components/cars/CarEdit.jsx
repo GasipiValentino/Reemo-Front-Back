@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { call } from '../../services/api.service';
 
@@ -41,6 +41,7 @@ const CarEdit = () => {
         const data = await call({ uri: `vehiculos/${_id}` });
         setVehiculo(data);
       } catch (error) {
+        console.error(error);
         setMensajeError('No se pudo cargar los datos del vehículo');
       }
     }
@@ -75,7 +76,7 @@ const CarEdit = () => {
         <div>
           <label className='block text-sm font-medium'>Marca</label>
           <select 
-            name="" 
+            name="marca" 
             value={vehiculo.marca}
             onChange={handleChange}
             className='border p-2 w-full'
@@ -85,7 +86,7 @@ const CarEdit = () => {
               {marcas.map((marca) => (
                 <option key={marca._id} value={marca.marca}>{marca.marca}</option>
               ))}
-            </select>1
+            </select>
         </div>
         <div>
           <label className="block text-sm font-medium">Modelo</label>

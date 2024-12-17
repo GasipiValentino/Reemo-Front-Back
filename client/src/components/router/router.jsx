@@ -6,6 +6,7 @@ import ProtectedRouter from "../router/ProtectedRouter";
 const Login = lazy(() => import("../login/Login"));
 const Register = lazy(() => import("../login/Register"));
 const CarList = lazy(() => import("../cars/CarList"));
+const CarBrands = lazy(() => import("../cars/CarBrands"));
 const CarDetail = lazy(() => import("../cars/CarDetail"));
 const CarEdit = lazy(() => import("../cars/CarEdit"));
 const CarDelete = lazy(() => import("../cars/CarDelete"));
@@ -105,6 +106,14 @@ const router = createBrowserRouter([
             <ProtectedRouter component={<CarPublish />} />{" "}
           </Suspense>
         ),
+      },
+      {
+        path: "/marca/:id",
+        element: (
+          <Suspense fallback={<div>Cargando...</div>}>
+            <ProtectedRouter component={<CarBrands />} />
+          </Suspense>
+        )
       },
     ],
   },

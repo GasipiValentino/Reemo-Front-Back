@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { call } from '../../services/api.service';
 
 const CarList = () => {
   const [autos, setAutos] = useState([]);
@@ -31,6 +32,25 @@ const CarList = () => {
     }
   };
 
+    const [marcas, setMarcas] = useState([]);
+  
+    const [mensajeError, setMensajeError] = useState('');
+  
+    useEffect(() =>  {
+      const fetchMarcas = async () => {
+        try {
+          const response = await call({ uri: 'marcas', method: 'GET'});
+          setMarcas(response);
+        } catch (error) {
+            console.error(error);
+            setMensajeError('No se pudieron cargas las marcas');
+        }
+      };
+  
+      fetchMarcas();
+    }, []);
+
+
   // Llama a la función fetchAutos cuando cambie la página
   useEffect(() => {
     fetchAutos(page);
@@ -40,7 +60,18 @@ const CarList = () => {
     <div className="flex flex-col min-h-screen mx-auto">
       <div className='p-4 max-w-md mx-auto md:max-w-screen-xl'>
         <h1 className="text-3xl mb-4 sm:text-4xl font-bold text-gray-900 m-6">Autos disponibles en Reemo</h1>
-        
+        {mensajeError && <p className="text-red-500 mb-4">{mensajeError}</p>}
+        <div className='flex flex-row gap-2 max-w-dvh overflow-x-auto'>
+          {marcas.map((marca) => (
+            <a 
+              key={marca.marca} 
+              href={`/marca/${marca._id}`}
+              className='bg-blue-200 px-3 py-2 rounded-full flex items-center'
+              >
+                {marca.marca}
+            </a>
+          ))}
+        </div>
         {/* Navegación de páginas */}
         <div className='flex gap-8 justify-center my-8'>
           {page > 1 && (
