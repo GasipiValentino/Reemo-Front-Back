@@ -1,6 +1,6 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import Navbar from '../Nav/Navbar'
+import Navbar from '../nav/Navbar'
 import { SessionProvider } from '../contexts/session.context'
 
 const Layout = () => {

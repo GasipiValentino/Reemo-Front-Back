@@ -1,6 +1,6 @@
 import { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
-import Layout from "../Layout/Layout";
+import Layout from "../layout/Layout";
 import ProtectedRouter from "../router/ProtectedRouter";
 
 const Login = lazy(() => import("../login/Login"));
@@ -13,6 +13,8 @@ const CarDelete = lazy(() => import("../cars/CarDelete"));
 const CarPublish = lazy(() => import("../cars/CarPublish"));
 const Close = lazy(() => import("../login/Close"));
 const Logout = lazy(() => import("../login/Logout"));
+const NotFound = lazy(() => import("../error/NotFound"));
+
 const router = createBrowserRouter([
   {
     element: <Layout />,
@@ -119,8 +121,8 @@ const router = createBrowserRouter([
         path: "*",
         element: (
           <Suspense fallback={<div>Cargando...</div>}>
-            <h1>Página no encontrada: Error</h1>
-          </Suspense>
+          <NotFound />
+        </Suspense>
         ),
       },
     ],
